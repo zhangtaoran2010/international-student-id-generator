@@ -19,15 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (file) {
       const reader = new FileReader();
       reader.onload = ev => {
-        preview.src = ev.target.result;
-        // 隐藏预览图片，只用于数据存储
-        preview.style.display = 'none';
-        placeholder.style.display = 'block';
+        preview.src = ev.target.result; // 确保图片数据被设置到 src 属性
+        // preview.style.display = 'block'; // 不在 index.html 中显示
+        // placeholder.style.display = 'none'; // 不在 index.html 中显示
       };
       reader.readAsDataURL(file);
     } else {
-      preview.style.display = 'none';
-      placeholder.style.display = 'block';
+      preview.src = '#'; // 清除 src
+      // preview.style.display = 'none';
+      // placeholder.style.display = 'block';
     }
   });
 

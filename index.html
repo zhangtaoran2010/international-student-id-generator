@@ -1,106 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magical Student ID Generator</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Material Icons CDN -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>International Student ID Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Dongguan Polytechnic School</h1>
-        <h2>国际学生证</h2>
-        <div class="logo-placeholder">
-            <!-- School Logo -->
-            <i class="material-icons" id="school-logo">school</i>
+  <header>
+    <img src="logo.png" alt="School Logo" class="school-logo">
+    <h1>Dongguan Polytechnic School</h1>
+    <h2>国际学生证生成系统</h2>
+  </header>
+
+  <main class="container">
+    <section class="input-section">
+      <h2>填写你的信息</h2>
+      <form id="id-card-form">
+        <div class="form-group">
+          <label for="student-photo">上传个人照片：</label>
+          <input type="file" id="student-photo" accept="image/*">
+          <div class="photo-preview-wrapper">
+            <img id="photo-preview" src="#" alt="" class="photo-preview">
+            <i class="material-icons photo-placeholder-icon" id="photo-upload-placeholder">account_circle</i>
+          </div>
         </div>
-    </header>
 
-    <main class="container">
-        <section class="input-section">
-            <h2>Create Your ID Card</h2>
-            <form id="id-card-form">
-                <div class="form-group">
-                    <label for="student-photo">Upload Photo:</label>
-                    <input type="file" id="student-photo" accept="image/*">
-                    <div class="photo-preview-wrapper">
-                        <img id="photo-preview" src="#" alt="Photo Preview" class="photo-preview">
-                        <i class="material-icons photo-placeholder-icon" id="photo-upload-placeholder">account_circle</i>
-                    </div>
-                </div>
+        <div class="form-group">
+          <label for="student-name">姓名 (Name):</label>
+          <input type="text" id="student-name" placeholder="e.g., Zhang Tao Ran">
+        </div>
 
-                <div class="form-group">
-                    <label for="student-name">姓名 (Name):</label>
-                    <input type="text" id="student-name" placeholder="e.g., Zhang Tao Ran">
-                </div>
+        <div class="form-group">
+          <label for="student-id">学号 (Student ID):</label>
+          <input type="text" id="student-id" placeholder="e.g., INT783903">
+        </div>
 
-                <div class="form-group">
-                    <label for="student-id">学号 (Student ID):</label>
-                    <input type="text" id="student-id" placeholder="e.g., INT783903">
-                </div>
+        <div class="form-group">
+          <label for="student-major">专业 (Major):</label>
+          <input type="text" id="student-major" placeholder="e.g., Computer Science">
+        </div>
 
-                <div class="form-group">
-                    <label for="student-major">院系/专业 (Department/Major):</label>
-                    <input type="text" id="student-major" placeholder="e.g., Information Security Major">
-                </div>
+        <div class="form-group date-group">
+          <div class="date-input">
+            <label for="issue-date">签发日期:</label>
+            <input type="date" id="issue-date">
+          </div>
+          <div class="date-input">
+            <label for="expiry-date">有效期至:</label>
+            <input type="date" id="expiry-date">
+          </div>
+        </div>
 
-                <div class="form-group date-group">
-                    <div class="date-input">
-                        <label for="issue-date">签发日期 (Issue Date):</label>
-                        <input type="date" id="issue-date">
-                    </div>
-                    <div class="date-input">
-                        <label for="expiry-date">有效期至 (Valid Until):</label>
-                        <input type="date" id="expiry-date">
-                    </div>
-                </div>
+        <button type="button" id="generate-btn">生成国际学生证</button>
+      </form>
+    </section>
+  </main>
 
-                <button type="button" id="generate-btn">Generate ID Card</button>
-            </form>
-        </section>
+  <footer>
+    <p>&copy; 2025 Dongguan Polytechnic. All rights reserved.</p>
+  </footer>
 
-        <section class="id-card-display-section">
-            <h2>Your Magical ID Card</h2>
-            <div id="id-card-preview" class="id-card-preview">
-                <div class="id-card-header">
-                    <div class="logo-placeholder-preview">
-                        <!-- School Logo Preview -->
-                        <i class="material-icons" id="logo-preview">school</i>
-                    </div>
-                    <div class="header-text">
-                        <span class="school-name">Dongguan Polytechnic School</span>
-                        <span class="id-title">国际学生证</span>
-                    </div>
-                </div>
-                <div class="id-card-body">
-                <div class="photo-area">
-                    <img id="card-photo" src="#" alt="Student Photo">
-                    <i class="material-icons photo-placeholder-icon" id="card-photo-placeholder">account_circle</i>
-                </div>
-                    <div class="details-area">
-                        <p><strong>姓名 (Name):</strong> <span id="card-name"></span></p>
-                        <p><strong>学号 (Student ID):</strong> <span id="card-id"></span></p>
-                        <p><strong>院系/专业 (Department/Major):</strong> <span id="card-major"></span></p>
-                    </div>
-                </div>
-                <div class="id-card-footer">
-                    <div class="date-info">
-                        <p>签发日期 (Issue Date): <span id="card-issue-date"></span></p>
-                    </div>
-                    <div class="date-info">
-                        <p>有效期至 (Valid Until): <span id="card-expiry-date"></span></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Magical Realm. All rights reserved.</p>
-    </footer>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
